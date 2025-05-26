@@ -1,7 +1,13 @@
+import { webcrypto } from 'crypto';
+// Si no existe globalThis.crypto, lo asignamos al webcrypto de Node
+if (!(globalThis as any).crypto) {
+  (globalThis as any).crypto = webcrypto;
+}
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { AuthService } from './users/user.service';
 import { ValidationPipe } from '@nestjs/common';
+
 
 
 async function bootstrap() {
