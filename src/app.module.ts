@@ -23,7 +23,7 @@ import { Contacto } from './contacto/entities/contacto.entity';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        type: 'mariadb',
+        type: 'postgres',
         host: config.get<string>('DB_HOST'),
         port: parseInt(config.get<string>('DB_PORT', '3306')),
         username: config.get<string>('DB_USER'),
