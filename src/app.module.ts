@@ -24,13 +24,9 @@ import { Contacto } from './contacto/entities/contacto.entity';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
-        host: config.get<string>('DB_HOST'),
-        port: parseInt(config.get<string>('DB_PORT', '3306')),
-        username: config.get<string>('DB_USER'),
-        password: config.get<string>('DB_PASS'),
-        database: config.get<string>('DB_NAME'),
-        entities: [User, Domicilio, ServiceItem, Contacto],
-        synchronize: true, // ⚠️ solo para desarrollo
+  url: config.get<string>('DATABASE_URL'), // ✅ usar URL completa
+  entities: [User, Domicilio, ServiceItem, Contacto],
+  synchronize: true,
       }),
     }),
     UserModule,
