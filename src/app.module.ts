@@ -23,10 +23,16 @@ import { Contacto } from './contacto/entities/contacto.entity';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        type: 'postgres',
-  url: config.get<string>('DATABASE_URL'), // ✅ usar URL completa
+       type: 'postgres',
+  url: config.get<string>('DATABASE_URL'),
   entities: [User, Domicilio, ServiceItem, Contacto],
-  synchronize: true,
+  synchronize: true, // solo para desarrollo
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false, // para evitar errores con certificados
+    },
+  },
       }),
     }),
     UserModule,
