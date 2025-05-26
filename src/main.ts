@@ -15,7 +15,7 @@ async function bootstrap() {
 
   // HABILITAR CORS
   app.enableCors({
-    origin: ['http://localhost:8080','http://localhost:5173'], // URL de tu frontend
+    origin: ["https://lavanderiaolimpia.netlify.app"], // URL de tu frontend
     credentials: true,
   });
   app.useGlobalPipes(new ValidationPipe({
@@ -23,7 +23,7 @@ async function bootstrap() {
     forbidNonWhitelisted: true, // lanza error si se manda algo no permitido
     transform: true, // convierte tipos (ej: string -> Date, number, etc)
   }));
-
+  
    const userService = app.get(AuthService);
   await userService.crearUsuarioPorDefecto();
   await app.listen(process.env.PORT ?? 3000);
